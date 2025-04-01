@@ -1,0 +1,12 @@
+# Environment variables
+.env
+.env.dev
+.env.development
+.env.local
+
+# Log files
+example.log
+logs
+
+# Docker compose
+docker-compose-*.yml

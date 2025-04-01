@@ -1,0 +1,26 @@
+services:
+  ### Filebeat service
+  filebeat-${ELASTIC_INDEX}:
+    image: ${REGISTRY_NAME}/filebeat:${APP_TAG}
+    container_name: ${APP_NAME}
+    network_mode: host
+    # Volumes
+    volumes:
+      - ${LOGS_FOLDER}:${LOGS_FOLDER}
+    # Environment variables
+    environment:
+      ELASTIC_INDEX: ${ELASTIC_INDEX}
+      ELASTIC_USER: ${ELASTIC_USER}
+      ELASTIC_PASSWORD: ${ELASTIC_PASSWORD}
+      LOGS_FOLDER: ${LOGS_FOLDER}
+      LOGS_FILENAME: ${LOGS_FILENAME}
+    # Start with flags
+    command: ["-e", "-strict.perms=false"]
+    # Loggin settings
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "64m"
+        max-file: 16
+        compress: "true"
+    restart: always

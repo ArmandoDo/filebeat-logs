@@ -1,0 +1,26 @@
+---
+# You can find the full configuration reference here:
+# https://www.elastic.co/guide/en/beats/filebeat/index.html
+
+filebeat.inputs:
+- type: log
+  paths:
+    - ${LOGS_FOLDER}/${LOGS_FILENAME}
+  json:
+    keys_under_root: true
+    overwrite_keys: true
+    add_error_key: true
+    message_key: message
+  backoff: 5s
+
+processors:
+  - drop_fields:
+      fields: ["agent", "host", "ecs", "ecs.version", "input.type", "log.file.path", "log.offset"]
+
+output.elasticsearch:
+  hosts: ["localhost:9200"]
+  index: ${ELASTIC_INDEX}
+  username: ${ELASTIC_USER}
+  password: ${ELASTIC_PASSWORD}
+
+setup.template.enabled: false

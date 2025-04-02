@@ -7,6 +7,7 @@ services:
     # Volumes
     volumes:
       - ${LOGS_FOLDER}:${LOGS_FOLDER}
+      - filebeat_data:/usr/share/filebeat/data
     # Environment variables
     environment:
       ELASTIC_INDEX: ${ELASTIC_INDEX}
@@ -24,3 +25,8 @@ services:
         max-file: 16
         compress: "true"
     restart: always
+
+volumes:
+  filebeat_data:
+    name: filebeat_data
+    driver: local

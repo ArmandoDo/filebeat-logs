@@ -18,7 +18,7 @@ processors:
       fields: ["agent", "host", "ecs", "ecs.version", "input.type", "log.file.path", "log.offset"]
 
 output.elasticsearch:
-  hosts: ["localhost:9200"]
+  hosts: ["0.0.0.0:9200"]
   index: ${ELASTIC_INDEX}
   username: ${ELASTIC_USER}
   password: ${ELASTIC_PASSWORD}

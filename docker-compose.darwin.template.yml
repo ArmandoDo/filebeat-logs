@@ -7,7 +7,7 @@ services:
     # Volumes
     volumes:
       - ${LOGS_FOLDER}:${LOGS_FOLDER}
-      - filebeat_data:/usr/share/filebeat/data
+      # - filebeat_data:/usr/share/filebeat/data
     # Environment variables
     environment:
       ELASTIC_INDEX: ${ELASTIC_INDEX}
@@ -26,7 +26,14 @@ services:
         compress: "true"
     restart: always
 
+# Volumes
 volumes:
   filebeat_data:
     name: filebeat_data
     driver: local
+
+# Networks
+networks:
+  elasticstack_network:
+    name: elasticsearch_network
+    driver: bridge

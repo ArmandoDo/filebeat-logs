@@ -83,8 +83,7 @@ PUT _index_template/index-template-example
         "lifecycle": { "name": "ILP-example" },
         "refresh_interval": "10s",
         "number_of_shards": 2,
-        "mode": "time_series",
-        "routing_path": ["service"]
+        "number_of_replicas":"0"
       }
     },
     "mappings": {
@@ -93,24 +92,19 @@ PUT _index_template/index-template-example
           "strings_as_keywords": {
             "match_mapping_type": "string",
             "mapping": {
-              "type": "keyword",
-              "ignore_above": 1024
+              "type": "keyword"
             }
           }
-        }
+        } 
       ],
       "_data_stream_timestamp": { "enabled": true },
-      "_source": { "enabled": false },
       "properties": {
-        "@timestamp": { "type": "date" },
-        "service": {
-          "type": "keyword",
-          "time_series_dimension": true
-        }
+        "@timestamp": { "type": "date" }
       }
     }
   }
 }
+
 ```
 
 ## Set up the `.env` file

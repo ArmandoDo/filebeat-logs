@@ -10,3 +10,6 @@ logs
 
 # Docker compose
 docker-compose-*.yml
+
+# Test folder
+tests
